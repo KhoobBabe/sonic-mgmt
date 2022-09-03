@@ -267,10 +267,7 @@ def bind_vrf_interface(dut, **kwargs):
                 my_cmd += 'sudo config interface vrf bind {} {}\n'.format(intf, vrf)
         else:
             for vrf,intf in zip(vrf_name,intf_name):
-                if not st.is_feature_supported("vrf-needed-for-unbind", dut):
-                    my_cmd += 'sudo config interface vrf unbind {}\n'.format(intf)
-                else:
-                    my_cmd += 'sudo config interface vrf unbind {} {}\n'.format(intf, vrf)
+                my_cmd += 'sudo config interface vrf unbind {}\n'.format(intf)
                 if 'Loopback' in intf:
                     if not st.is_feature_supported("config-loopback-add-command", dut):
                         st.log("Community build doesn't need Loopback interface un-configuration")
